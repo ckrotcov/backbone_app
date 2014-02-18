@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+  <head>
+  	<title>Backbone JS</title>
+  	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.0/normalize.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/app.css">
+  </head>
+  <body>
+  	<header>
+  		<h1>My Backbone App</h1>
+  	</header>
+    <div class="content">
+    	<div class="row">
+	      	<div id="product-catalog" class="col-md-8">
+	      		<h2>Product Catalog</h2>
+			 	<table class="table table table-striped table-bordered" id="product-table"></table>
+	      	</div>
+	      	<div class="col-md-4" id="form-container"></div>
+	    </div>
+      	
+    </div>
+	<footer>
+	
+	</footer>
+    <script src="//code.jquery.com/jquery-2.1.0.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.3.0/handlebars.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.0/backbone-min.js"></script>
+	<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+	<script src="/js/models.js"></script>
+	<script src="/js/views.js"></script>
+	<script src="/js/app.js"></script>
+	<script src="/products"></script>
+	
+	<script id="products-tpl" type="text/x-handlebars-template">		
+		<tbody>
+		{{#each products}}  
+			<tr>
+				<td><a data-id="{{_id}}">{{name}}</a></td>
+				<td>{{description}}</td>
+				<td>{{value}}</td>
+				<td align="right">
+					<span class="glyphicon glyphicon-edit edit-button" data-id="{{_id}}"></span>
+					<span class="glyphicon glyphicon-remove-sign delete-button" data-id="{{_id}}"></span>
+
+					
+				</td>
+			</tr>
+		{{/each}}
+		</tbody>
+	</script>
+	<script id="product-form-tpl" type="text/x-handlebars-template">
+		<div id="product-form" class="product-edit" >
+			<h2>Edit Product</h2>
+			<form role="form">
+				<div class="form-group">
+					<label for="name">Name</label>
+					<input type="text" class="form-control" name="name" id="name" value="{{name}}"/> 
+				</div>
+				<div class="form-group">
+					<label for="description">Description</label>
+					<input type="text" class="form-control" name="desc" id="description" value="{{description}}"/> 
+				</div>
+				<div class="form-group">
+					<label for="width">Width</label>
+					<input type="text" class="form-control" name="width" id="width" value="{{width}}"/> 
+				</div>
+				<div class="form-group">
+					<label for="height">Height</label>
+					<input type="text" class="form-control" name="height" id="height" value="{{height}}"/> 
+				</div>
+				<div class="form-group">
+					<label for="value">Value</label>
+					<input type="text" class="form-control" name="value" id="value" value="{{value}}"/> 
+				</div>
+				<button id="product-save" type="button" class="btn btn-primary">Save</button>
+				<button id="product-cancel" type="button" class="btn btn-danger">Clear</button>
+			</form>
+		</div>
+	</script>
+	
+	<script id="product-view" type="text/x-handlebars-template">
+		<div class="modal fade bs-modal-lg" tabindex="-1" role="dialog" aria-labelledby="productDetails" aria-hidden="true">
+		  <div class="modal-dialog modal-lg">
+		    <div class="modal-content">
+		      Name: {{name}}<br>
+		      Description: {{description}}<br>
+		      Weight: {{width}}<br>
+		      Height: {{height}}<br>
+		      Value: {{value}}<br>
+		    </div>
+		  </div>
+		</div>
+	</script>
+  </body>
+</html>
