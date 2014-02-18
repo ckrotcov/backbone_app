@@ -1,4 +1,4 @@
-backbone_app
+My Backbone App
 ============
 
 My Sample Backbone and Node.js app
